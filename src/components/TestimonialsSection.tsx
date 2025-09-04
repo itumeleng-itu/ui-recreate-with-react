@@ -18,9 +18,9 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
   testimonials 
 }) => {
   return (
-    <section className="testimonials-section">
-      <h2 className="testimonials-title">{title}</h2>
-      <div className="testimonials-grid">
+    <section className="testimonials">
+      <h2 className="testimonialstitle">{title}</h2>
+      <div className="testimonialsgrid">
         {testimonials.map((testimonial, index) => (
           <Testimonial key={index} {...testimonial} />
         ))}

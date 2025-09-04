@@ -10,7 +10,7 @@ type HeroSectionProps = {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ title, showArrow }) => {
   return (
-    <section className="hero-section" style={{
+    <section className="herosection" style={{
       backgroundImage: `url(${back})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -20,11 +20,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, showArrow }) => {
       overflow: 'hidden'
     }}>
       <Navigation />
-      <div className="hero-content">
-        <h1 className="hero-title">{title}</h1>
+      <div className="herocontent">
+        <h1 className="herotitle">{title}</h1>
 
         {showArrow && (
-          <div className="arrow-down">
+          <div className="arrowdown">
             <img src={arrow} alt="Scroll down" />
           </div>
         )}

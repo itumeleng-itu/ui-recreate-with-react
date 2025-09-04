@@ -1,4 +1,4 @@
-//import React from 'react';
+import React from 'react';
 
 type GalleryItemProps = {
   photo: string;
@@ -8,7 +8,7 @@ type GalleryItemProps = {
 export default function MyGallery({photo, onClick}: GalleryItemProps) {
   return (
     <div 
-      className="gallery-item" 
+      className="galleryitem" 
       style={{
         backgroundImage: `url(${photo})`,
         backgroundSize: 'cover',

@@ -13,7 +13,7 @@ interface ServicesSectionProps {
 
 const ServicesSection: React.FC<ServicesSectionProps> = ({ services }) => {
   return (
-    <section className="services-section">
+    <section className="servicessection">
       {services.map((service, index) => (
         <ServiceCard key={index} title={service.title} text={service.text} pic={service.pic} />
       ))}

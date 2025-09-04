@@ -9,24 +9,24 @@ type ContentSectionProps ={
 }
 
 const ContentSection: React.FC<ContentSectionProps> = ({ title, text, linkText = "LEARN MORE", background, reversed = false, }) => {
-  const sectionClass = `content-section${reversed ? ' reversed' : ''}`;
+  const sectionClass = `contentsection${reversed ? ' reversed' : ''}`;
   
   return (
     <section className={sectionClass}>
-      <div className="content-area" style={{ 
+      <div className="contentarea" style={{ 
             backgroundColor:"white",
             textAlign:"start",
             
           }}>
 
-        <h2 className="section-title" style={{
+        <h2 className="sectiontitle" style={{
           fontFamily:"Barlow",
           fontWeight:"600",
         }}>{title}</h2>
-        <p className="section-text" style={{
+        <p className="sectiontext" style={{
           fontSize:"12.8px"
         }}>{text}</p>
-        <a href="#" className="learn-more" style={{
+        <a href="#" className="learnmore" style={{
           fontFamily:"Fraunces",
           fontWeight:"900",
         }}>{linkText}</a>

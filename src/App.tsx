@@ -63,7 +63,8 @@ function App() {
     <div className="agency-website">
       <HeroSection title="WE ARE CREATIVES" showArrow />
       
-      <ContentSection title="Transform your brand"
+      <ContentSection 
+        title="Transform your brand"
         text="We are a full-service creative agency specializing in helping brands grow fast. Engage your clients through compelling visuals that do most of the marketing for you."
         background={egg}
         linkText='LEARN MORE'
@@ -81,7 +82,7 @@ function App() {
       
       <TestimonialsSection testimonials={testimonialsData} />
       
-      <div style={{
+      <div className="gallerysection" style={{
         display:"grid",
         gridTemplateColumns:"repeat(4, 1fr)",
         

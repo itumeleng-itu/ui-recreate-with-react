@@ -9,7 +9,7 @@ type ServiceCardProps= {
 const ServiceCard: React.FC<ServiceCardProps> = ({title, text, pic }) => {
   return (
     <div
-      className="service-card"
+      className="servicecard"
       style={{
         backgroundImage: `url(${pic})`,
         backgroundSize: "cover",
@@ -24,7 +24,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({title, text, pic }) => {
         textAlign: "center",
       }}
     >
-      <div className="card-contents" style={{ 
+      <div className="cardcontents" style={{ 
         maxWidth: "520px",
         width: "100%",
         position:"relative",
@@ -35,7 +35,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({title, text, pic }) => {
 
         }}>
         <h3
-          className="service-title"
+          className="servicetitle"
           style={{
             fontFamily: "Fraunces",
             fontWeight: 900,
@@ -46,7 +46,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({title, text, pic }) => {
           {title}
         </h3>
         <p
-          className="service-text"
+          className="servicetext"
           style={{
             marginTop: "12px",
             marginBottom: 0,
