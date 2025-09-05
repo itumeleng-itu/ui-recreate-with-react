@@ -16,7 +16,6 @@ const ContentSection: React.FC<ContentSectionProps> = ({ title, text, linkText =
       <div className="contentarea" style={{ 
             backgroundColor:"white",
             textAlign:"start",
-            
           }}>
 
         <h2 className="sectiontitle" style={{
@@ -36,7 +35,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ title, text, linkText =
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        //minHeight: '100vh',
+        height: '100vh',
         position: 'relative',
         overflow: 'hidden'
       }}></div>
