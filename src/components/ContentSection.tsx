@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 type ContentSectionProps = {
   title: string;
@@ -19,6 +19,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({
   linkColor = 'yellow',
   onLearnMoreClick 
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
   const sectionClass = `contentsection${reversed ? ' reversed' : ''}`;
   
   return (
@@ -29,6 +30,12 @@ const ContentSection: React.FC<ContentSectionProps> = ({
         <button 
           className={`learnmore ${linkColor === 'pink' ? 'pink' : ''}`}
           onClick={onLearnMoreClick}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          style={{
+            borderBottom: isHovered ? '5px solid red' : '5px solid transparent',
+            transition: 'border-bottom 0.3s ease'
+          }}
         >
           {linkText}
         </button>
