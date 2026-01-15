@@ -10,16 +10,12 @@ interface TestimonialProps {
 const Testimonial: React.FC<TestimonialProps> = ({ text, author, role, pic }) => {
   return (
     <div className="testimonial">
-      <div 
+      <img 
         className="testimonial-avatar" 
-        style={{ 
-          backgroundImage:`url(${pic})`,
-          backgroundSize:"cover"
-      }}
-      ></div>
-      <p className="testimonial-text" style={{
-        fontWeight:"600"
-      }}>{text}</p>
+        src={pic} 
+        alt={author}
+      />
+      <p className="testimonial-text">{text}</p>
       <div className="testimonial-author">{author}</div>
       <div className="testimonial-role">{role}</div>
     </div>

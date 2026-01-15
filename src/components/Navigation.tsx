@@ -1,35 +1,66 @@
 import React from 'react';
-import logoImg from '../assets/images/logo.svg'
-import hamburgerIcon from '../assets/images/icon-hamburger.svg'
+import logoImg from '../assets/images/logo.svg';
+import hamburgerIcon from '../assets/images/icon-hamburger.svg';
 
-type NavigationProps ={
+type NavItem = {
+  label: string;
+  sectionId: string;
+};
+
+type NavigationProps = {
   logo?: string;
-  menuItems?: string[];
+  menuItems?: NavItem[];
   contactText?: string;
   onContactClick?: () => void;
+  onNavClick?: (sectionId: string) => void;
 }
+
+const defaultMenuItems: NavItem[] = [
+  { label: "About", sectionId: "about" },
+  { label: "Services", sectionId: "services" },
+  { label: "Projects", sectionId: "projects" }
+];
 
 const Navigation: React.FC<NavigationProps> = ({
   logo = logoImg,
-  menuItems = ["About", "Services", "Projects"],
+  menuItems = defaultMenuItems,
   contactText = "CONTACT",
-  onContactClick = () => {}
+  onContactClick = () => {},
+  onNavClick = () => {}
 }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const handleNavClick = (sectionId: string) => {
+    onNavClick(sectionId);
+    setIsMenuOpen(false);
+  };
+
+  const handleContactClick = () => {
+    setIsMenuOpen(false);
+    onContactClick();
+  };
 
   return (
     <nav className="navigation">
       <div className="logo">
-        <img src={logo} alt="sunnyside" style={{ height: 24 }} />
+        <img src={logo} alt="sunnyside" />
       </div>
 
       <ul className="nav-menu">
         {menuItems.map((item, index) => (
-          <li key={index}>{item}</li>
+          <li 
+            key={index} 
+            onClick={() => handleNavClick(item.sectionId)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && handleNavClick(item.sectionId)}
+          >
+            {item.label}
+          </li>
         ))}
       </ul>
 
-      <button className="contact-btn" onClick={onContactClick}>
+      <button className="contact-btn" onClick={handleContactClick}>
         {contactText}
       </button>
 
@@ -39,7 +70,7 @@ const Navigation: React.FC<NavigationProps> = ({
         aria-expanded={isMenuOpen}
         onClick={() => setIsMenuOpen((v) => !v)}
       >
-        <img src={hamburgerIcon} alt="menu" style={{ width: 24, height: 18 }} />
+        <img src={hamburgerIcon} alt="" aria-hidden="true" />
       </button>
 
       {isMenuOpen && (
@@ -47,11 +78,19 @@ const Navigation: React.FC<NavigationProps> = ({
           <ul>
             {menuItems.map((item, index) => (
               <li key={index}>
-                <button className="mobile-menu-item" onClick={() => setIsMenuOpen(false)}>{item}</button>
+                <button 
+                  className="mobile-menu-item" 
+                  onClick={() => handleNavClick(item.sectionId)}
+                >
+                  {item.label}
+                </button>
               </li>
             ))}
             <li>
-              <button className="mobile-contact-btn" onClick={() => { setIsMenuOpen(false); onContactClick(); }}>
+              <button 
+                className="mobile-contact-btn" 
+                onClick={handleContactClick}
+              >
                 {contactText}
               </button>
             </li>

@@ -1,11 +1,12 @@
-import React from 'react';
+
 
 type GalleryItemProps = {
   photo: string;
-  onClick: () => void;
+  alt?: string;
+  onClick?: () => void;
 }
 
-export default function MyGallery({photo, onClick}: GalleryItemProps) {
+export default function MyGallery({ photo, alt = "Gallery image", onClick }: GalleryItemProps) {
   return (
     <div 
       className="galleryitem" 
@@ -16,6 +17,10 @@ export default function MyGallery({photo, onClick}: GalleryItemProps) {
         backgroundRepeat: 'no-repeat'
       }}
       onClick={onClick}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={onClick ? (e) => e.key === 'Enter' && onClick() : undefined}
+      aria-label={alt}
     />
   );
 }

@@ -1,12 +1,13 @@
 import React from 'react';
 
-type ServiceCardProps= {
+type ServiceCardProps = {
   title: string;
   text: string;
   pic: string;
+  textColor?: string;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({title, text, pic }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, text, pic, textColor }) => {
   return (
     <div
       className="servicecard"
@@ -15,45 +16,18 @@ const ServiceCard: React.FC<ServiceCardProps> = ({title, text, pic }) => {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        minHeight: "100vh",
-        display: "grid",
-        gridAutoColumns:"repeat(2,1fr)",
-        alignItems: "flex-end",
-        justifyContent: "center",
-        padding: "24px",
-        boxSizing: "border-box",
-        textAlign: "center",
       }}
     >
-      <div className="cardcontents" style={{ 
-        maxWidth: "520px",
-        width: "100%",
-        position:"relative",
-        bottom:"-100px",
-        padding:"15%",
-        alignItems:"center"
-
-
-        }}>
-        <h3
+      <div className="cardcontents">
+        <h3 
           className="servicetitle"
-          style={{
-            fontFamily: "Fraunces",
-            fontWeight: 900,
-            margin: "2%",
-            color: "#1b1b1b",
-          }}
+          style={textColor ? { color: textColor } : undefined}
         >
           {title}
         </h3>
-        <p
+        <p 
           className="servicetext"
-          style={{
-            marginTop: "12px",
-            marginBottom: 0,
-            lineHeight: 1.6,
-            color: "#3b3b3b",
-          }}
+          style={textColor ? { color: textColor } : undefined}
         >
           {text}
         </p>

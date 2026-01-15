@@ -3,36 +3,67 @@ import facebookIcon from '../assets/images/icon-facebook.svg';
 import instagramIcon from '../assets/images/icon-instagram.svg';
 import pinterestIcon from '../assets/images/icon-pinterest.svg';
 import twitterIcon from '../assets/images/icon-twitter.svg';
-import logoImg from '../assets/images/logo.svg'
+import logoImg from '../assets/images/logo.svg';
 
+type NavItem = {
+  label: string;
+  sectionId: string;
+};
 
 interface FooterProps {
+  id?: string;
   logo?: string;
-  navItems?: string[];
+  navItems?: NavItem[];
+  onNavClick?: (sectionId: string) => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ logo =logoImg,navItems = ["About", "Services", "Projects"],}) => {
-  const icons = [
-    { src: facebookIcon, alt: 'Facebook', href: '#' },
-    { src: instagramIcon, alt: 'Instagram', href: '#' },
-    { src: twitterIcon, alt: 'Twitter', href: '#' },
-    { src: pinterestIcon, alt: 'Pinterest', href: '#' },
-  ];
+const defaultNavItems: NavItem[] = [
+  { label: "About", sectionId: "about" },
+  { label: "Services", sectionId: "services" },
+  { label: "Projects", sectionId: "projects" }
+];
 
+const socialIcons = [
+  { src: facebookIcon, alt: 'Facebook', href: 'https://facebook.com' },
+  { src: instagramIcon, alt: 'Instagram', href: 'https://instagram.com' },
+  { src: twitterIcon, alt: 'Twitter', href: 'https://twitter.com' },
+  { src: pinterestIcon, alt: 'Pinterest', href: 'https://pinterest.com' },
+];
+
+const Footer: React.FC<FooterProps> = ({ 
+  id,
+  logo = logoImg,
+  navItems = defaultNavItems,
+  onNavClick = () => {}
+}) => {
   return (
-    <footer className="footer">
+    <footer id={id} className="footer">
       <div className="footer-logo">
-        <img src={logo} alt="sunnyside" style={{ height: 24 }} />
+        <img src={logo} alt="sunnyside" />
       </div>
+      
       <nav className="footer-nav">
         {navItems.map((item, index) => (
-          <a key={index} href="#">{item}</a>
+          <button 
+            key={index} 
+            onClick={() => onNavClick(item.sectionId)}
+          >
+            {item.label}
+          </button>
         ))}
       </nav>
+      
       <div className="social-icons">
-        {icons.map((icon, index) => (
-          <a key={index} className="social-icon" href={icon.href} aria-label={icon.alt}>
-            <img src={icon.src} alt={icon.alt} style={{ width: 18, height: 18 }} />
+        {socialIcons.map((icon, index) => (
+          <a 
+            key={index} 
+            className="social-icon" 
+            href={icon.href} 
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={icon.alt}
+          >
+            <img src={icon.src} alt="" aria-hidden="true" />
           </a>
         ))}
       </div>

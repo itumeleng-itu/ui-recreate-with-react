@@ -1,44 +1,47 @@
 import React from 'react';
 
-type ContentSectionProps ={
+type ContentSectionProps = {
   title: string;
   text: string;
   linkText: string;
-  background:string;
+  background: string;
   reversed?: boolean;
+  linkColor?: 'yellow' | 'pink';
+  onLearnMoreClick?: () => void;
 }
 
-const ContentSection: React.FC<ContentSectionProps> = ({ title, text, linkText = "LEARN MORE", background, reversed = false, }) => {
+const ContentSection: React.FC<ContentSectionProps> = ({ 
+  title, 
+  text, 
+  linkText = "LEARN MORE", 
+  background, 
+  reversed = false,
+  linkColor = 'yellow',
+  onLearnMoreClick 
+}) => {
   const sectionClass = `contentsection${reversed ? ' reversed' : ''}`;
   
   return (
     <section className={sectionClass}>
-      <div className="contentarea" style={{ 
-            backgroundColor:"white",
-            textAlign:"start",
-          }}>
-
-        <h2 className="sectiontitle" style={{
-          fontFamily:"Barlow",
-          fontWeight:"600",
-        }}>{title}</h2>
-        <p className="sectiontext" style={{
-          fontSize:"12.8px"
-        }}>{text}</p>
-        <a href="#" className="learnmore" style={{
-          fontFamily:"Fraunces",
-          fontWeight:"900",
-        }}>{linkText}</a>
+      <div className="contentarea">
+        <h2 className="sectiontitle">{title}</h2>
+        <p className="sectiontext">{text}</p>
+        <button 
+          className={`learnmore ${linkColor === 'pink' ? 'pink' : ''}`}
+          onClick={onLearnMoreClick}
+        >
+          {linkText}
+        </button>
       </div>
-      <div className="art" style={{
-        backgroundImage:`url(${background})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        height: '100vh',
-        position: 'relative',
-        overflow: 'hidden'
-      }}></div>
+      <div 
+        className="art" 
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
     </section>
   );
 };
